@@ -1,0 +1,27 @@
+<div [hidden]="enviado">
+	<h3>Formularios Reactivos</h3>
+	<form [formGroup]="form" (submit)="onSubmit(form.value)">
+		<label for="email">E-mail</label>
+		<input name="email"
+		formControlName="email"
+		type="email" />
+		<div *ngIf="email.errors?.email">Debe ser un email válido</div>
+		<br>
+		<label for="name">Name</label>
+		<input name="name"
+		formControlName="name"
+		type="text" />
+		<br>
+		<label for="msn">Msn</label>
+		<input name="msn"
+		formControlName="msn"
+		type="text" />
+		<br>
+		<label for="phone">Phone</label>
+		<input name="phone"
+		formControlName="phone"
+		type="number" />
+		<br>
+		<button type="submit" [disabled]="form.invalid">Guardar</button>
+	</form>
+</div>

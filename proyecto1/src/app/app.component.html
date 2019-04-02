@@ -1,0 +1,41 @@
+<h1>{{title}}</h1>
+
+<h3>Mi nombre completo es: {{usuario['nombre']}} {{usuario.apellido}}</h3>
+
+<!--Listado de cursos-->
+<ul>
+	<li *ngFor="let item of cursos">
+		<p>{{item.titulo}}</p>
+		<p *ngIf="item.horas >= 16; else elseBlock">El curso dura más de dos días</p>
+		<button (click)="0">Seleccionar</button>
+	</li>
+</ul>
+<ng-template #elseBlock>El curso dura menos de dos días</ng-template>
+
+<!--NGSwitch-->
+<button (click)="value=1">Seleccionar 1</button>
+<button (click)="value=2">Seleccionar 2</button>
+<button (click)="value=3">Seleccionar 3</button>
+<p>Ha seleccionado el valor: {{value}}</p>
+<div [ngSwitch]="value">
+	<div *ngSwitchCase="1">Ha elegido el valor <b>{{value}}</b></div>
+	<div *ngSwitchCase="2">Ha elegido el valor <b>{{value}}</b></div>
+	<div *ngSwitchCase="3">Ha elegido el valor <b>{{value}}</b></div>
+	<div *ngSwitchDefault>El valor por defecto es <b>{{value}}</b></div>
+</div>
+<!--<button (click)="saludar()">Saludar!</button>-->
+<app-home [entrada]="usuario.nombre"></app-home>
+<div [ngClass]="getClass('noche')">
+	Modo noche
+</div>
+<div [ngClass] = "getClass('dia')">
+	Modo día
+</div>
+
+<!--MODELOS-->
+<input type="text" name="modelo" id="modelo" [(ngModel)]="modelo.texto">
+<button appColored floatSide="center" (click)="getModel();">Enviar formulario</button>
+
+<!--ngStyles-->
+<div [ngStyle]="setStyles()">Prueba de estilos</div>
+<router-outlet></router-outlet>
