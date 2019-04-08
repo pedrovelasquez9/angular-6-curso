@@ -1,0 +1,10 @@
+<form action="">
+	<input type="text" name="nombre" [(ngModel)]="usuario.name" id="name" placeholder="name">
+	<input type="text" name="job" id="job" [(ngModel)]="usuario.job" placeholder="job">
+	<button *ngIf="!update" (click)="registrarUsuario()">Enviar</button>
+	<button *ngIf="update" (click)="updateUser()">Editar</button>
+</form>
+
+<ul>
+	<li *ngFor="let item of user">{{item.name}} <button (click)="editar(item)">Editar</button> <button>Eliminar</button></li>
+</ul>
