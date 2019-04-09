@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RemoteDataService } from 'src/app/services/remote-data.service';
 import { Response } from 'src/app/Response';
-import { Observable, fromEvent, interval } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-usuarios',
@@ -18,27 +18,29 @@ export class UsuariosComponent implements OnInit {
 		job:""
 	}
 	update = false;
-  constructor(private remoteDataService: RemoteDataService) {}
+	form: FormGroup;
+	nombre;
+	ocupacion;
+  constructor(private remoteDataService: RemoteDataService, private formBuilder: FormBuilder) {}
 	
   ngOnInit() {
-	  
+	  this.form = this.formBuilder.group({
+		  name: ['',Validators.required],
+		  job: ['',Validators.required]
+	  }) 
+	  if(localStorage.user!=null){
+		  this.user = JSON.parse(localStorage.user);
+	  }
   }
 
   registrarUsuario(){
 	  this.remoteDataService.saveUsuario(this.usuario).subscribe(response =>{
 		  this.user.push(response);
-		  console.log(response);
+		  localStorage.user = JSON.stringify(this.user);
 		  this.usuario = {
 			name:"",
 			job:""
 		  };
-	  })
-  }
-
-  registrarObservable(){
-	  var btn = document.getElementById('btn');
-	  fromEvent(btn, 'click').subscribe(()=>{
-		  console.log('haz hecho click');
 	  })
   }
 
@@ -49,7 +51,22 @@ export class UsuariosComponent implements OnInit {
 
   updateUser(){
 	this.remoteDataService.updateUsuario(this.usuario).subscribe(res => {
-		console.log(res);
+		localStorage.user = JSON.stringify(this.user);
+		this.usuario = {
+			name:"",
+			job:""
+		  };
+		this.update = false;
+	})
+  }
+
+  delete(id){
+	this.remoteDataService.eliminarUsuario(id).subscribe(res => {
+		this.user = this.user.filter(item => {
+			return item.id != id;
+		})
+	}, err => {
+		console.log(err);
 	})
   }
 

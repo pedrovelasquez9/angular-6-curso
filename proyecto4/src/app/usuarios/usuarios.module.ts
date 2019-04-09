@@ -11,7 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 	  FormsModule,
     CommonModule,
 	UsuariosRoutingModule,
-	HttpClientModule
+	HttpClientModule,
+	ReactiveFormsModule
   ],
   providers: [{
 	  provide: HTTP_INTERCEPTORS,

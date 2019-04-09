@@ -1,0 +1,46 @@
+form{
+	width: 20%;
+    margin: 30px;
+}
+
+input{
+	width: 100%;
+	margin-top:15px;
+	margin-bottom: 15px;
+	padding: 10px;
+	border-radius: 5px;
+	background-color:#f5f5f5;
+	border:none;
+	color: #a1a1a1;
+}
+
+button{
+	border:none;
+	background-color: darkcyan;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 5px;
+	width: 70px;
+	margin: 5px;
+	padding:5px;
+}
+
+button:disabled{
+	background-color: #f5f5f5;
+	color: #666666;
+}
+
+ul{
+	list-style: none;
+	float: left
+}
+
+ul li{
+	font-weight: bold;
+	text-align: right;
+	color: #666666
+}
+
+div{
+	margin-left: 700px;
+}
