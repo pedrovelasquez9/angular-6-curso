@@ -1,0 +1,15 @@
+.resultados{
+	display: flex;
+	justify-content: space-around;
+}
+cdk-virtual-scroll-viewport, .listado{
+	height: 300px;
+	flex-grow: 1;
+	overflow-y: scroll;
+	text-align: center;
+}
+
+div{
+	padding: 5px;
+	height: 40px;
+}
